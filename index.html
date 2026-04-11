@@ -1,0 +1,1431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Frontier™ - AI Transformation Programme</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Open+Sans+Condensed:wght@300;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ─── Reset & Base ─── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cyan:       #00B2F0;
+      --cyan-dark:  #0098CE;
+      --dark:       #0A3347;
+      --dark-mid:   #0D3F5A;
+      --dark-light: #124969;
+      --white:      #FFFFFF;
+      --off-white:  #F4F9FC;
+      --text-muted: rgba(255,255,255,0.65);
+      --text-dark:  #0A2030;
+      --border:     rgba(255,255,255,0.12);
+      --border-dark: rgba(10,51,71,0.15);
+      --radius:     12px;
+      --radius-lg:  20px;
+      --transition: 0.25s ease;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Open Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      font-size: 1rem;
+      background: var(--white);
+      color: var(--text-dark);
+      line-height: 1.2;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ─── Typography ─── */
+    h1, h2, h3, h4 {
+      font-family: 'Open Sans Condensed', 'Open Sans', sans-serif;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+
+    .display-xl {
+      font-size: clamp(2.5rem, 6vw, 5.5rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.05;
+      text-transform: uppercase;
+    }
+
+    .display-lg {
+      font-size: clamp(2rem, 4.5vw, 3.75rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+      line-height: 1.1;
+    }
+
+    .display-md {
+      font-size: clamp(1.5rem, 2.5vw, 2.25rem);
+      font-weight: 700;
+      letter-spacing: -0.01em;
+    }
+
+    p { font-size: 1rem; line-height: 1.2; }
+
+    .lead {
+      font-size: clamp(1rem, 1.5vw, 1.125rem);
+      line-height: 1.2;
+      font-weight: 400;
+    }
+
+    /* ─── Layout ─── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    section { padding: clamp(4rem, 8vw, 8rem) 0; }
+
+    /* ─── Buttons ─── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.875rem 2rem;
+      border-radius: 50px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      border: 2px solid transparent;
+      cursor: pointer;
+      transition: all var(--transition);
+      white-space: nowrap;
+    }
+
+    .btn-primary {
+      background: var(--cyan);
+      color: var(--white);
+      border-color: var(--cyan);
+    }
+    .btn-primary:hover {
+      background: var(--cyan-dark);
+      border-color: var(--cyan-dark);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border-color: rgba(255,255,255,0.45);
+    }
+    .btn-outline-white:hover {
+      background: var(--white);
+      color: var(--dark);
+      border-color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-outline-dark {
+      background: transparent;
+      color: var(--dark);
+      border-color: var(--dark);
+    }
+    .btn-outline-dark:hover {
+      background: var(--dark);
+      color: var(--white);
+      transform: translateY(-2px);
+    }
+
+    .btn-lg {
+      padding: 1.125rem 2.5rem;
+      font-size: 1rem;
+    }
+
+    .btn-arrow::after {
+      content: "→";
+      transition: transform var(--transition);
+    }
+    .btn-arrow:hover::after { transform: translateX(4px); }
+
+    /* ─── Navigation ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      background: rgba(10, 51, 71, 0.95);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      transition: all var(--transition);
+    }
+
+    .nav-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.875rem clamp(1.5rem, 5vw, 4rem);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-logo {
+      height: 43px;
+      width: auto;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: rgba(255,255,255,0.75);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      transition: color var(--transition);
+      letter-spacing: 0.01em;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    .nav-cta { margin-left: 1rem; }
+
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none;
+      border: none;
+    }
+    .hamburger span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 2px;
+      transition: all var(--transition);
+    }
+
+    .mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--dark);
+      border-top: 1px solid var(--border);
+      padding: 1.5rem clamp(1.5rem, 5vw, 4rem);
+      gap: 1.25rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: rgba(255,255,255,0.8);
+      text-decoration: none;
+      font-size: 1rem;
+      font-weight: 500;
+      padding: 0.5rem 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+    .mobile-menu .btn { align-self: flex-start; margin-top: 0.5rem; }
+
+    /* ─── Hero ─── */
+    .hero {
+      position: relative;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      overflow: hidden;
+      padding: 8rem 0 6rem;
+    }
+
+    .hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: 0;
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: transparent;
+      z-index: 1;
+    }
+
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 clamp(1.5rem, 5vw, 4rem);
+    }
+
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,178,240,0.12);
+      border: 1px solid rgba(0,178,240,0.5);
+      color: var(--cyan);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.5rem 1.25rem;
+      border-radius: 50px;
+      margin-bottom: 2rem;
+    }
+
+    .hero-title {
+      color: var(--white);
+      margin-bottom: 1.75rem;
+    }
+    .hero-title .accent { color: var(--cyan); }
+
+    .hero-subtitle {
+      color: rgba(255,255,255,0.8);
+      margin-bottom: 2.5rem;
+      max-width: 640px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 1rem;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* ─── Ticker / Trust bar ─── */
+    .trust-bar {
+      background: var(--cyan);
+      padding: 1rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+
+    .trust-bar-inner {
+      display: inline-flex;
+      gap: 3rem;
+      animation: ticker 28s linear infinite;
+    }
+
+    .trust-item {
+      color: var(--white);
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .trust-item::before {
+      content: '✦';
+      font-size: 0.5rem;
+      opacity: 0.7;
+    }
+
+    @keyframes ticker {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── Pain Points ─── */
+    .pain-section {
+      background: var(--white);
+    }
+
+    .section-eyebrow {
+      display: inline-block;
+      color: var(--cyan);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1rem;
+    }
+
+    .section-header {
+      margin-bottom: clamp(2.5rem, 5vw, 4rem);
+    }
+
+    .section-header .display-lg {
+      margin-bottom: 1.25rem;
+      max-width: 700px;
+    }
+
+    .section-header p {
+      color: #4A6B7C;
+      max-width: 580px;
+    }
+
+    .pain-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .pain-card {
+      background: var(--off-white);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      position: relative;
+      overflow: hidden;
+      transition: all var(--transition);
+    }
+    .pain-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--cyan);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--transition);
+    }
+    .pain-card:hover { transform: translateY(-4px); }
+    .pain-card:hover::before { transform: scaleX(1); }
+
+    .pain-quote {
+      font-family: 'Open Sans Condensed', 'Open Sans', sans-serif;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 1rem;
+      line-height: 1.2;
+    }
+    .pain-quote::before { content: '"'; color: var(--cyan); }
+    .pain-quote::after  { content: '"'; color: var(--cyan); }
+
+    .pain-desc {
+      font-size: 1rem;
+      color: #5A7585;
+      line-height: 1.2;
+    }
+
+    .pain-icon {
+      width: 44px; height: 44px;
+      background: rgba(0,178,240,0.1);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 1.25rem;
+      font-size: 1.25rem;
+    }
+
+    /* ─── Introduction ─── */
+    .intro-section {
+      background: var(--dark);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .intro-section::before {
+      content: '';
+      position: absolute;
+      top: 50%; right: -150px;
+      transform: translateY(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,178,240,0.12) 0%, transparent 65%);
+      pointer-events: none;
+    }
+
+    .intro-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(3rem, 6vw, 8rem);
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .intro-label {
+      font-size: 1rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--cyan);
+      margin-bottom: 1.25rem;
+    }
+
+    .intro-heading { color: var(--white); margin-bottom: 1.5rem; }
+    .intro-heading .tm { color: var(--cyan); }
+
+    .intro-body { color: var(--text-muted); margin-bottom: 2rem; line-height: 1.2; }
+
+    .principle-list {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .principle-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.2;
+    }
+    .principle-list li::before {
+      content: '✦';
+      color: var(--cyan);
+      font-size: 0.55rem;
+      margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    /* ─── How It Works ─── */
+    .how-section {
+      background: var(--off-white);
+    }
+
+    .how-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 3.5rem;
+    }
+
+    .how-card {
+      background: var(--white);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all var(--transition);
+    }
+    .how-card:hover {
+      transform: translateY(-6px);
+    }
+
+    .how-number {
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      color: var(--cyan);
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .how-number::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--cyan);
+    }
+
+    .how-icon {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+
+    .how-title {
+      font-family: 'Open Sans Condensed', 'Open Sans', sans-serif;
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 0.75rem;
+    }
+
+    .how-desc {
+      font-size: 1rem;
+      color: #5A7585;
+      line-height: 1.2;
+    }
+
+    .how-cta-strip {
+      background: var(--dark);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .how-cta-strip p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      max-width: 550px;
+      line-height: 1.2;
+    }
+
+    /* ─── Mid CTA ─── */
+    .mid-cta {
+      background: #041C2C;
+      padding: clamp(3rem, 5vw, 5rem) 0;
+    }
+
+    .mid-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .mid-cta-text h2 {
+      color: var(--white);
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      margin-bottom: 0.5rem;
+    }
+    .mid-cta-text p {
+      color: rgba(255,255,255,0.7);
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .mid-cta .btn-outline-white:hover {
+      background: var(--cyan);
+      color: var(--white);
+      border-color: var(--cyan);
+    }
+
+    /* ─── Programme Phases ─── */
+    .phases-section {
+      background: var(--dark);
+      color: var(--white);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .phases-section::before {
+      content: '';
+      position: absolute;
+      bottom: -200px; right: -200px;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,178,240,0.1) 0%, transparent 70%);
+    }
+
+    .phases-tabs {
+      position: relative;
+      z-index: 1;
+    }
+
+    .phases-header {
+      margin-bottom: 3rem;
+    }
+
+    .phases-header h2 { color: var(--white); margin-bottom: 1rem; }
+    .phases-header p { color: var(--text-muted); max-width: 550px; line-height: 1.2; }
+
+    .tab-switcher {
+      display: inline-flex;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      padding: 4px;
+      margin-bottom: 2.5rem;
+      gap: 4px;
+    }
+
+    .tab-btn {
+      padding: 0.625rem 1.5rem;
+      border-radius: 50px;
+      border: none;
+      background: transparent;
+      color: rgba(255,255,255,0.55);
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all var(--transition);
+    }
+    .tab-btn.active {
+      background: var(--cyan);
+      color: var(--white);
+    }
+    .tab-btn:hover:not(.active) {
+      color: var(--white);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; }
+
+    .phase-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .phase-card {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      transition: all var(--transition);
+    }
+    .phase-card:hover {
+      background: rgba(255,255,255,0.09);
+      border-color: rgba(0,178,240,0.35);
+    }
+
+    .phase-tag {
+      display: inline-block;
+      background: rgba(0,178,240,0.15);
+      border: 1px solid rgba(0,178,240,0.3);
+      color: var(--cyan);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.3rem 0.75rem;
+      border-radius: 50px;
+      margin-bottom: 1.25rem;
+    }
+
+    .phase-card h3 {
+      font-size: 1.125rem;
+      color: var(--white);
+      margin-bottom: 0.75rem;
+    }
+
+    .phase-card p {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.2;
+    }
+
+    .phase-card ul {
+      list-style: none;
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .phase-card ul li {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.65);
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      line-height: 1.2;
+    }
+    .phase-card ul li::before {
+      content: '→';
+      color: var(--cyan);
+      flex-shrink: 0;
+      font-size: 1rem;
+      margin-top: 0;
+    }
+
+    .phases-bottom-cta {
+      margin-top: 3rem;
+      padding: 2.5rem;
+      background: rgba(0,178,240,0.1);
+      border: 1px solid rgba(0,178,240,0.25);
+      border-radius: var(--radius-lg);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 2rem;
+    }
+
+    .phases-bottom-cta p {
+      color: rgba(255,255,255,0.8);
+      font-size: 1rem;
+      max-width: 500px;
+      line-height: 1.2;
+    }
+
+    /* ─── Applications ─── */
+    .applications-section {
+      background: var(--off-white);
+    }
+
+    .apps-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+
+    .app-chip {
+      background: var(--white);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius);
+      padding: 1.25rem 1rem;
+      text-align: center;
+      transition: all var(--transition);
+      cursor: default;
+    }
+    .app-chip:hover {
+      border-color: var(--cyan);
+      background: rgba(0,178,240,0.04);
+      transform: translateY(-3px);
+    }
+    .app-chip .app-icon { font-size: 1.6rem; margin-bottom: 0.6rem; display: block; }
+    .app-chip .app-name { font-size: 1rem; font-weight: 600; color: var(--dark); line-height: 1.2; }
+
+    /* ─── Final CTA ─── */
+    .final-cta {
+      background: var(--dark);
+      color: var(--white);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .final-cta::before {
+      content: '';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 900px; height: 900px;
+      background: radial-gradient(circle, rgba(0,178,240,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .final-cta-inner {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .final-cta h2 { color: var(--white); margin-bottom: 1.25rem; }
+    .final-cta p { color: var(--text-muted); margin-bottom: 2.5rem; line-height: 1.2; }
+
+    .final-cta-actions {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+
+    .contact-detail {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 0.5rem;
+      font-size: 1rem;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.2;
+    }
+    .contact-detail a {
+      color: var(--cyan);
+      text-decoration: none;
+      transition: opacity var(--transition);
+    }
+    .contact-detail a:hover { opacity: 0.8; }
+
+    /* ─── Footer ─── */
+    footer {
+      background: #061E2B;
+      border-top: 1px solid rgba(255,255,255,0.07);
+      padding: 2.5rem 0;
+    }
+
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-logo { height: 34px; width: auto; }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .footer-links a {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.45);
+      text-decoration: none;
+      transition: color var(--transition);
+    }
+    .footer-links a:hover { color: var(--cyan); }
+
+    .footer-copy {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.3);
+    }
+
+    /* ─── Utilities ─── */
+    .text-cyan  { color: var(--cyan); }
+    .text-white { color: var(--white); }
+
+    .divider {
+      width: 48px;
+      height: 3px;
+      background: var(--cyan);
+      margin: 1.5rem 0;
+      border-radius: 2px;
+    }
+
+    /* ─── Animations ─── */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 1024px) {
+      .pain-grid    { grid-template-columns: 1fr 1fr; }
+      .how-grid     { grid-template-columns: repeat(2, 1fr); }
+      .apps-grid    { grid-template-columns: repeat(3, 1fr); }
+      .phase-grid   { grid-template-columns: 1fr 1fr; }
+    }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .nav-cta   { display: none; }
+      .hamburger { display: flex; }
+
+      .intro-inner       { grid-template-columns: 1fr; }
+      .pain-grid         { grid-template-columns: 1fr; }
+      .how-grid          { grid-template-columns: 1fr; }
+      .phase-grid        { grid-template-columns: 1fr; }
+      .apps-grid         { grid-template-columns: repeat(2, 1fr); }
+      .how-cta-strip     { flex-direction: column; align-items: flex-start; }
+      .phases-bottom-cta { flex-direction: column; align-items: flex-start; }
+      .mid-cta-inner     { flex-direction: column; align-items: flex-start; }
+      .footer-inner      { flex-direction: column; align-items: flex-start; gap: 1rem; }
+      .footer-links      { flex-wrap: wrap; gap: 1rem; }
+    }
+
+    @media (max-width: 480px) {
+      .apps-grid          { grid-template-columns: repeat(2, 1fr); }
+      .hero-actions       { flex-direction: column; align-items: center; }
+      .final-cta-actions  { flex-direction: column; align-items: center; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════
+     NAVIGATION
+═══════════════════════════════════════════════ -->
+<nav id="main-nav">
+  <div class="nav-inner">
+    <a href="#hero" aria-label="Frontier Home">
+      <img src="branding/frontier-logo.svg"
+           alt="Frontier"
+           class="nav-logo" />
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#programme">Programme</a></li>
+    </ul>
+    <a href="https://calendly.com/meetinsightsmedia" target="_blank" rel="noopener" class="btn btn-primary nav-cta">
+      Book a Session
+    </a>
+    <button class="hamburger" id="hamburger" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about">About</a>
+    <a href="#how-it-works">How It Works</a>
+    <a href="#programme">Programme</a>
+    <a href="https://calendly.com/meetinsightsmedia" target="_blank" rel="noopener" class="btn btn-primary">Book a Session →</a>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════════════════════════
+     HERO
+═══════════════════════════════════════════════ -->
+<section class="hero" id="hero">
+  <!-- Video background: webm for modern browsers, mp4 for Safari, png poster fallback -->
+  <video class="hero-video" autoplay muted loop playsinline
+         poster="video/Plexus_Background.png">
+    <source src="video/Plexus_Background.webm" type="video/webm" />
+    <source src="video/Plexus_Background.mp4" type="video/mp4" />
+  </video>
+  <div class="hero-overlay"></div>
+
+  <div class="hero-inner">
+    <div class="hero-eyebrow fade-in">
+      ✦ &nbsp;The Safe AI Transformation Programme
+    </div>
+    <h1 class="display-xl hero-title fade-in" style="transition-delay:0.1s">
+      Assessing - <span class="accent">and Harnessing</span> - the Opportunity for AI<br/>in Your Organisation
+    </h1>
+    <p class="lead hero-subtitle fade-in" style="transition-delay:0.2s">
+      Frontier™ is a structured, de-risked programme that turns AI uncertainty into measurable action - giving your organisation the confidence to adopt AI safely and strategically.
+    </p>
+    <div class="hero-actions fade-in" style="transition-delay:0.3s">
+      <a href="https://calendly.com/meetinsightsmedia"
+         target="_blank" rel="noopener"
+         class="btn btn-primary btn-lg btn-arrow">
+        Book a Discovery Call
+      </a>
+      <a href="#about" class="btn btn-outline-white btn-lg">
+        Learn More
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     TRUST BAR
+═══════════════════════════════════════════════ -->
+<div class="trust-bar" aria-hidden="true">
+  <div class="trust-bar-inner">
+    <span class="trust-item">Safe Exploration</span>
+    <span class="trust-item">De-Risked Experimentation</span>
+    <span class="trust-item">Measurable ROI</span>
+    <span class="trust-item">AI-Ready Workforce</span>
+    <span class="trust-item">Legal &amp; Ethical Frameworks</span>
+    <span class="trust-item">Structured Pilots</span>
+    <span class="trust-item">Collaborative Learning</span>
+    <span class="trust-item">Built-In Brakes</span>
+    <!-- duplicate for seamless loop -->
+    <span class="trust-item">Safe Exploration</span>
+    <span class="trust-item">De-Risked Experimentation</span>
+    <span class="trust-item">Measurable ROI</span>
+    <span class="trust-item">AI-Ready Workforce</span>
+    <span class="trust-item">Legal &amp; Ethical Frameworks</span>
+    <span class="trust-item">Structured Pilots</span>
+    <span class="trust-item">Collaborative Learning</span>
+    <span class="trust-item">Built-In Brakes</span>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     PAIN POINTS
+═══════════════════════════════════════════════ -->
+<section class="pain-section" id="about">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">The Problem</span>
+      <h2 class="display-lg">What's holding your<br/>organisation back?</h2>
+      <p class="lead">Most organisations know AI is important. The struggle is knowing where to start - and how to proceed without exposing themselves to unnecessary risk.</p>
+    </div>
+    <div class="pain-grid">
+      <div class="pain-card fade-in">
+        <div class="pain-icon">🧭</div>
+        <div class="pain-quote">We don't have an AI strategy.</div>
+        <p class="pain-desc">You're experimenting without purpose - trying tools but failing to connect them to real business outcomes. Activity without direction wastes time and budget.</p>
+      </div>
+      <div class="pain-card fade-in" style="transition-delay:0.1s">
+        <div class="pain-icon">🔒</div>
+        <div class="pain-quote">The risk is too high.</div>
+        <p class="pain-desc">Legitimate but disproportionate concerns about data security and compliance are suppressing momentum - even where AI could make a real difference.</p>
+      </div>
+      <div class="pain-card fade-in" style="transition-delay:0.2s">
+        <div class="pain-icon">🤷</div>
+        <div class="pain-quote">Our team doesn't know where to start.</div>
+        <p class="pain-desc">Without consensus, clear policy, or permission to experiment, even willing and capable teams can't move forward with confidence or coherence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     INTRO / ABOUT FRONTIER
+═══════════════════════════════════════════════ -->
+<section class="intro-section">
+  <div class="container">
+    <div class="intro-inner">
+      <div class="fade-in">
+        <div class="intro-label">Introducing Frontier™</div>
+        <h2 class="display-lg intro-heading">
+          A Smarter, Safer Approach to AI</span>
+        </h2>
+        <p class="lead intro-body">
+          Frontier™ is a unique guided programme that allows organisations to explore, pilot, and implement AI safely and commercially. Through structured learning and hands-on experimentation, we turn AI anxiety into confident, measurable action.
+        </p>
+        <p class="intro-body">
+          With built-in brakes and a customised pace, Frontier™ meets your organisation where it is - and takes it where it needs to go. No pressure. No guesswork. Just clear, purposeful progress.
+        </p>
+        <a href="https://calendly.com/meetinsightsmedia"
+           target="_blank" rel="noopener"
+           class="btn btn-primary btn-arrow" style="margin-top:1rem;">
+          Book a Free 30-Minute Call
+        </a>
+      </div>
+      <div class="fade-in" style="transition-delay:0.15s">
+        <div style="background:rgba(255,255,255,0.05); border:1px solid var(--border); border-radius:var(--radius-lg); padding:2rem;">
+          <div style="font-size:1rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--cyan); margin-bottom:1.25rem;">
+            Programme Design Principles
+          </div>
+          <ul class="principle-list">
+            <li>Iterative workflow</li>
+            <li>Collaborative learning</li>
+            <li>Safe, ring-fenced space</li>
+            <li>Creative &amp; democratic</li>
+            <li>Constant comms</li>
+            <li>Senior sponsorship</li>
+            <li>Built-in brakes</li>
+            <li>Customised to culture</li>
+            <li>Empowers willing teams</li>
+            <li>Regular tangible outputs</li>
+          </ul>
+        </div>
+
+        <div style="margin-top:1.25rem; background:rgba(0,178,240,0.1); border:1px solid rgba(0,178,240,0.25); border-radius:var(--radius); padding:1.25rem; display:flex; gap:1rem; align-items:flex-start;">
+          <div style="font-size:1.5rem; flex-shrink:0;">⏱️</div>
+          <div>
+            <div style="font-family:'Open Sans Condensed','Open Sans',sans-serif; font-weight:700; color:var(--white); font-size:1rem; margin-bottom:0.25rem;">Phased Programme Timeline</div>
+            <div style="font-size:1rem; color:rgba(255,255,255,0.65);">Phase One: 10–12 weeks &nbsp;·&nbsp; Phase Two: 18–24 weeks</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     HOW IT WORKS
+═══════════════════════════════════════════════ -->
+<section class="how-section" id="how-it-works">
+  <div class="container">
+    <div class="section-header fade-in">
+      <span class="section-eyebrow">How It Works</span>
+      <h2 class="display-lg">Four pillars of safe<br/>AI adoption</h2>
+      <p class="lead">Every element of Frontier™ is designed to move your organisation forward - without ever outpacing your people, your data security, or your confidence.</p>
+    </div>
+    <div class="how-grid">
+      <div class="how-card fade-in">
+        <div class="how-icon">📚</div>
+        <div class="how-number">01 Learn</div>
+        <div class="how-title">Learn Together</div>
+        <p class="how-desc">Practical workshops and collaborative hacks build shared understanding of how to use AI safely, effectively, and with confidence across your organisation.</p>
+      </div>
+      <div class="how-card fade-in" style="transition-delay:0.1s">
+        <div class="how-icon">🛡️</div>
+        <div class="how-number">02 Protect</div>
+        <div class="how-title">Stay Safe</div>
+        <p class="how-desc">Clear legal and ethical frameworks ensure every experiment protects your data, your reputation, and your people - with no unexpected compliance surprises.</p>
+      </div>
+      <div class="how-card fade-in" style="transition-delay:0.2s">
+        <div class="how-icon">🎯</div>
+        <div class="how-number">03 Test</div>
+        <div class="how-title">Test Smart</div>
+        <p class="how-desc">Structured pilots match your most pressing business challenges to the AI tools most likely to deliver measurable, evidence-based value quickly.</p>
+      </div>
+      <div class="how-card fade-in" style="transition-delay:0.3s">
+        <div class="how-icon">⚡</div>
+        <div class="how-number">04 Build</div>
+        <div class="how-title">Build Skills Fast</div>
+        <p class="how-desc">Hands-on, accelerated learning boosts your team's AI confidence and capability - creating a genuinely AI-ready workforce that's equipped for what comes next.</p>
+      </div>
+    </div>
+
+    <div class="how-cta-strip fade-in">
+      <p>Ready to see how Frontier™ could work for your organisation? A 30-minute discovery call is all it takes to map a clear path forward.</p>
+      <a href="https://calendly.com/meetinsightsmedia"
+         target="_blank" rel="noopener"
+         class="btn btn-primary btn-arrow" style="flex-shrink:0;">
+        Talk to a Specialist
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     MID CTA STRIP
+═══════════════════════════════════════════════ -->
+<div class="mid-cta">
+  <div class="container">
+    <div class="mid-cta-inner">
+      <div class="mid-cta-text">
+        <h2>Turn AI anxiety into AI action.</h2>
+        <p>Book a free 30-minute discovery call and find out exactly how Frontier™ can work for your organisation.</p>
+      </div>
+      <a href="https://calendly.com/meetinsightsmedia"
+         target="_blank" rel="noopener"
+         class="btn btn-outline-white btn-lg btn-arrow">
+        Book Your Call Today
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- ═══════════════════════════════════════════════
+     AI APPLICATIONS
+═══════════════════════════════════════════════ -->
+<section class="applications-section">
+  <div class="container">
+    <div class="section-header fade-in" style="text-align:center;">
+      <span class="section-eyebrow">Common AI Applications</span>
+      <h2 class="display-lg" style="margin:0 auto 1rem; max-width:700px;">Where AI is making<br/>the biggest impact</h2>
+      <p style="color:#4A6B7C; margin:0 auto; max-width:560px; line-height:1.2;">From automating grunt work to accelerating decision-making, these are the areas where Frontier™ pilots are delivering the most immediate value.</p>
+    </div>
+    <div class="apps-grid">
+      <div class="app-chip fade-in"><span class="app-icon">💻</span><div class="app-name">Coding &amp; Development</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.05s"><span class="app-icon">📊</span><div class="app-name">Data Analysis &amp; Trends</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.1s"><span class="app-icon">📋</span><div class="app-name">Project Management</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.15s"><span class="app-icon">⚙️</span><div class="app-name">Workflow Automation</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.2s"><span class="app-icon">🎓</span><div class="app-name">Learning &amp; Development</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.25s"><span class="app-icon">🧩</span><div class="app-name">Decision-Making</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.3s"><span class="app-icon">🚀</span><div class="app-name">Innovation Acceleration</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.35s"><span class="app-icon">🎨</span><div class="app-name">Content Generation</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.4s"><span class="app-icon">🤝</span><div class="app-name">Customer Service</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.45s"><span class="app-icon">🔧</span><div class="app-name">Process Re-engineering</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.5s"><span class="app-icon">🏋️</span><div class="app-name">Capacity Building</div></div>
+      <div class="app-chip fade-in" style="transition-delay:0.55s"><span class="app-icon">🔍</span><div class="app-name">Review &amp; Improvement</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     PROGRAMME PHASES
+═══════════════════════════════════════════════ -->
+<section class="phases-section" id="programme">
+  <div class="container">
+    <div class="phases-tabs">
+      <div class="phases-header fade-in">
+        <span class="section-eyebrow">The Programme</span>
+        <h2 class="display-lg" style="color:var(--white); margin-bottom:1rem;">
+          A clear, structured path<br/>from uncertainty to adoption
+        </h2>
+        <p class="lead">
+          Frontier™ unfolds in two phases - each with defined milestones, clear outputs, and built-in flexibility to match your organisation's pace and culture.
+        </p>
+      </div>
+
+      <div class="tab-switcher" role="tablist">
+        <button class="tab-btn active" data-tab="phase1" role="tab">Phase One</button>
+        <button class="tab-btn" data-tab="phase2" role="tab">Phase Two</button>
+      </div>
+
+      <div id="phase1" class="tab-panel active">
+        <div style="background:rgba(0,178,240,0.08); border:1px solid rgba(0,178,240,0.2); border-radius:var(--radius); padding:1rem 1.5rem; margin-bottom:2rem; display:inline-block;">
+          <span style="color:var(--cyan); font-size:1rem; font-weight:600;">⏱ Indicative duration: 10–12 weeks &nbsp;·&nbsp; Scoping, Insights &amp; AI Strategy</span>
+        </div>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <div class="phase-tag">Foundations</div>
+            <h3>Programme Setup</h3>
+            <p>Establish the conditions for success from the outset.</p>
+            <ul>
+              <li>Codify programme aims &amp; success criteria</li>
+              <li>Project team selection</li>
+              <li>Legal &amp; ethical frameworks, Rules of Engagement</li>
+              <li>AI tools audit &amp; IT architecture review</li>
+              <li>Data room setup &amp; brand asset collation</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <div class="phase-tag">Research</div>
+            <h3>Research &amp; Insights</h3>
+            <p>Understand where your organisation truly stands.</p>
+            <ul>
+              <li>Departmental AI usage heat-maps</li>
+              <li>Staff surveys &amp; SLT interviews</li>
+              <li>Pain point mapping across the organisation</li>
+              <li>L&amp;D audit &amp; AI readiness baseline</li>
+              <li>Sustainability impact assessment</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <div class="phase-tag">Decision</div>
+            <h3>Distillation &amp; Strategy</h3>
+            <p>Turn insights into a clear direction and board-level mandate.</p>
+            <ul>
+              <li>Action Learning Sets across all departments</li>
+              <li>AI interrogations &amp; risk management</li>
+              <li>Board/SLT paper on process, learning &amp; quick wins</li>
+              <li>Org-wide feedback on AI strategy</li>
+              <li>Go/No-Go decision for Phase Two</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div id="phase2" class="tab-panel">
+        <div style="background:rgba(0,178,240,0.08); border:1px solid rgba(0,178,240,0.2); border-radius:var(--radius); padding:1rem 1.5rem; margin-bottom:2rem; display:inline-block;">
+          <span style="color:var(--cyan); font-size:1rem; font-weight:600;">⏱ Indicative duration: 18–24 weeks &nbsp;·&nbsp; Pilots, Learning &amp; Scale</span>
+        </div>
+        <div class="phase-grid">
+          <div class="phase-card">
+            <div class="phase-tag">Specification</div>
+            <h3>Pilot Design</h3>
+            <p>Define exactly what you'll test and how you'll measure success.</p>
+            <ul>
+              <li>Scope and brief preferred pilots</li>
+              <li>Resource, sequencing &amp; timeline planning</li>
+              <li>Outcomes &amp; success criteria agreed</li>
+              <li>Helplines, guardrails &amp; vendor assessments</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <div class="phase-tag">Activation</div>
+            <h3>Running the Pilots</h3>
+            <p>Real experimentation with real oversight and real results.</p>
+            <ul>
+              <li>Technical workflow across all pilots</li>
+              <li>Continuous experimentation &amp; QA</li>
+              <li>Accelerated L&amp;D including prompt writing</li>
+              <li>Wellbeing support &amp; helpdesk provision</li>
+            </ul>
+          </div>
+          <div class="phase-card">
+            <div class="phase-tag">Reporting</div>
+            <h3>Distillation &amp; Scale</h3>
+            <p>Lock in your learnings and plan the next wave of adoption.</p>
+            <ul>
+              <li>360° review of all pilots with UX feedback</li>
+              <li>AI Policy draft for the organisation</li>
+              <li>Board &amp; SLT Show+Tell presentations</li>
+              <li>Outline Wave Two programme design</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="phases-bottom-cta fade-in">
+        <p>Want to understand exactly how the programme would be structured for your organisation? Let's talk - no obligation, just clarity.</p>
+        <a href="https://calendly.com/meetinsightsmedia"
+           target="_blank" rel="noopener"
+           class="btn btn-primary btn-arrow" style="flex-shrink:0;">
+          Book a Discovery Call
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FINAL CTA
+═══════════════════════════════════════════════ -->
+<section class="final-cta">
+  <div class="container">
+    <div class="final-cta-inner fade-in">
+      <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(0,178,240,0.12); border:1px solid rgba(0,178,240,0.3); color:var(--cyan); font-size:1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.4rem 1rem; border-radius:50px; margin-bottom:2rem;">
+        ✦ &nbsp;Ready to Begin?
+      </div>
+      <h2 class="display-lg">
+        Turn AI Anxiety<br/>into AI Action
+      </h2>
+      <div class="divider" style="margin:1.5rem auto;"></div>
+      <p class="lead">
+        Book a free 30-minute discovery call and find out how Frontier™ can safely unlock your organisation's AI potential - at the right pace, with the right support, and with measurable results from day one.
+      </p>
+      <div class="final-cta-actions">
+        <a href="https://calendly.com/meetinsightsmedia"
+           target="_blank" rel="noopener"
+           class="btn btn-primary btn-lg btn-arrow">
+          Book a 30-Minute Discovery Call
+        </a>
+        <a href="mailto:martincouzins@insightsmedia.co.uk"
+           class="btn btn-outline-white btn-lg">
+          Send Us an Email
+        </a>
+      </div>
+      <p class="contact-detail">
+        Or email us directly at &nbsp;
+        <a href="mailto:martincouzins@insightsmedia.co.uk">martincouzins@insightsmedia.co.uk</a>
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════
+     FOOTER
+═══════════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <img src="branding/frontier-logo.svg"
+           alt="Frontier"
+           class="footer-logo" />
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#programme">Programme</a></li>
+        <li><a href="mailto:martincouzins@insightsmedia.co.uk">Contact</a></li>
+      </ul>
+      <div class="footer-copy">
+        &copy; 2026 Frontier™. All rights reserved.
+      </div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  /* ─── Mobile Menu ─── */
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  hamburger.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    hamburger.setAttribute('aria-expanded', open);
+  });
+
+  mobileMenu.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => mobileMenu.classList.remove('open'));
+  });
+
+  /* ─── Nav scroll effect ─── */
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(10, 51, 71, 0.98)';
+      nav.style.boxShadow = '0 2px 20px rgba(0,0,0,0.4)';
+    } else {
+      nav.style.background = 'rgba(10, 51, 71, 0.95)';
+      nav.style.boxShadow = 'none';
+    }
+  }, { passive: true });
+
+  /* ─── Phase Tabs ─── */
+  document.querySelectorAll('.tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const target = btn.dataset.tab;
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById(target).classList.add('active');
+    });
+  });
+
+  /* ─── Scroll Animations ─── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+  /* ─── Smooth scroll for anchor links ─── */
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', e => {
+      const id = anchor.getAttribute('href').slice(1);
+      const target = document.getElementById(id);
+      if (target) {
+        e.preventDefault();
+        const top = target.getBoundingClientRect().top + window.scrollY - 80;
+        window.scrollTo({ top, behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+</body>
+</html>
