@@ -830,6 +830,117 @@
     }
     .contact-detail a:hover { opacity: 0.8; }
 
+    /* ─── Contact Form ─── */
+    .contact-form-section {
+      background: var(--off-white);
+      color: var(--text-dark);
+    }
+
+    .contact-form-section .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(0,178,240,0.1);
+      border: 1px solid rgba(0,178,240,0.3);
+      color: var(--cyan-dark);
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.4rem 1rem;
+      border-radius: 50px;
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-form-section h2 {
+      color: var(--dark);
+      margin-bottom: 1rem;
+    }
+
+    .contact-form-section .lead {
+      color: rgba(10,32,48,0.7);
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+    }
+
+    .contact-form-wrap {
+      max-width: 620px;
+      margin: 0 auto;
+      background: var(--white);
+      border: 1px solid var(--border-dark);
+      border-radius: var(--radius-lg);
+      padding: clamp(2rem, 5vw, 3rem);
+      box-shadow: 0 4px 32px rgba(10,51,71,0.07);
+    }
+
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.25rem;
+    }
+
+    .form-group label {
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--dark);
+      letter-spacing: 0.02em;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      font-family: 'Open Sans', sans-serif;
+      font-size: 1rem;
+      color: var(--text-dark);
+      background: var(--off-white);
+      border: 1.5px solid rgba(10,51,71,0.18);
+      border-radius: var(--radius);
+      padding: 0.75rem 1rem;
+      transition: border-color var(--transition), box-shadow var(--transition);
+      outline: none;
+      width: 100%;
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--cyan);
+      box-shadow: 0 0 0 3px rgba(0,178,240,0.15);
+      background: var(--white);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 130px;
+    }
+
+    .form-submit {
+      margin-top: 0.5rem;
+    }
+
+    .form-submit .btn {
+      width: 100%;
+      justify-content: center;
+    }
+
+    .form-note {
+      font-size: 0.875rem;
+      color: rgba(10,32,48,0.45);
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+
     /* ─── Footer ─── */
     footer {
       background: #061E2B;
@@ -1311,7 +1422,7 @@
 <!-- ═══════════════════════════════════════════════
      FINAL CTA
 ═══════════════════════════════════════════════ -->
-<section class="final-cta">
+<!-- <section class="final-cta">
   <div class="container">
     <div class="final-cta-inner fade-in">
       <div style="display:inline-flex; align-items:center; gap:0.5rem; background:rgba(0,178,240,0.12); border:1px solid rgba(0,178,240,0.3); color:var(--cyan); font-size:1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; padding:0.4rem 1rem; border-radius:50px; margin-bottom:2rem;">
@@ -1339,6 +1450,52 @@
         Or email us directly at &nbsp;
         <a href="mailto:martincouzins@insightsmedia.co.uk">martincouzins@insightsmedia.co.uk</a>
       </p>
+    </div>
+  </div>
+</section> -->
+
+<!-- ═══════════════════════════════════════════════
+     CONTACT FORM
+═══════════════════════════════════════════════ -->
+<section class="contact-form-section" id="contact-form">
+  <div class="container" style="text-align:center;">
+    <div class="section-label fade-in">✦ &nbsp;Get In Touch</div>
+    <h2 class="display-md fade-in">Turn AI Anxiety into AI Action</h2>
+    <p class="lead fade-in">
+      Have a question about the Frontier™ programme? Fill in the form below and we'll get back to you shortly.
+    </p>
+
+    <div class="contact-form-wrap fade-in">
+      <!-- Replace YOUR_FORM_ID with your Formspree form ID -->
+      <form action="https://formspree.io/f/YOUR_FORM_ID" method="POST">
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="cf-name">Full Name</label>
+            <input type="text" id="cf-name" name="name" placeholder="Jane Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="cf-org">Organisation</label>
+            <input type="text" id="cf-org" name="organisation" placeholder="Acme Ltd" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="cf-email">Email Address</label>
+          <input type="email" id="cf-email" name="email" placeholder="jane@example.com" required />
+        </div>
+
+        <div class="form-group">
+          <label for="cf-message">Message</label>
+          <textarea id="cf-message" name="message" placeholder="Tell us a bit about your organisation and what you're hoping to achieve…" required></textarea>
+        </div>
+
+        <div class="form-submit">
+          <button type="submit" class="btn btn-primary btn-lg">Send Message</button>
+        </div>
+
+        <p class="form-note">We respect your privacy and will never share your details.</p>
+      </form>
     </div>
   </div>
 </section>
